@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salem Tenants United Essex County</title>
+
+  <style>
+    :root {
+      --green: #315c45;
+      --light: #f8f6f0;
+      --sage: #e6eee6;
+      --orange: #b8754b;
+      --ink: #263a30;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--light);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    header {
+      background: white;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--green);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--orange);
+      text-decoration: underline;
+    }
+
+    .hero {
+      background: linear-gradient(125deg, #315c45, #588066);
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.15;
+      margin: 0 auto 22px;
+      max-width: 1100px;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      max-width: 850px;
+      margin: 0 auto 30px;
+    }
+
+    .btn, button {
+      background: var(--orange);
+      color: white;
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 23px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover, button:hover {
+      filter: brightness(.92);
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    section {
+      padding: 65px max(20px, 6vw);
+      scroll-margin-top: 20px;
+    }
+
+    section:nth-of-type(even) {
+      background: white;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--green);
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      margin: 0 0 18px;
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 25px;
+    }
+
+    /* Mission Statement */
+
+    .mission-box {
+      max-width: 900px;
+      margin: 35px auto 0;
+      padding: 35px;
+      background: var(--sage);
+      border-left: 5px solid var(--green);
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .mission-box h3 {
+      color: var(--green);
+      font-size: 1.7rem;
+      margin: 0 0 18px;
+    }
+
+    .mission-box p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--ink);
+      margin: 12px 0;
+    }
+
+    /* Updates, Notices, Events */
+
+    .cards {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 25px auto;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #dce5db;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 3px 12px #1733220b;
+      overflow-wrap: anywhere;
+    }
+
+    section:nth-of-type(even) .card {
+      background: var(--light);
+    }
+
+    .card h3 {
+      margin: 6px 0;
+      color: var(--green);
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--sage);
+      color: var(--green);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: .8rem;
+      font-weight: bold;
+    }
+
+    .date {
+      font-size: .9rem;
+      color: #586b60;
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    /* Six Square Photo Gallery */
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 30px auto;
+    }
+
+    .photo {
+      margin: 0;
+      min-width: 0;
+      background: white;
+      padding: 10px;
+      border: 1px solid #dce5db;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px #1733220b;
+    }
+
+    .photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 9px;
+      background: var(--sage);
+    }
+
+    .photo figcaption {
+      padding: 10px 6px 4px;
+      text-align: center;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--sage);
+      border: 2px dashed #b6c9ba;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #637a69;
+      padding: 15px;
+    }
+
+    /* Forms */
+
+    form {
+      max-width: 580px;
+      margin: 22px auto;
+      padding: 25px;
+      background: white;
+      border: 1px solid #dce5db;
+      border-radius: 16px;
+      display: grid;
+      gap: 13px;
+    }
+
+    label {
+      font-weight: 700;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #b6c9ba;
+      border-radius: 8px;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .status {
+      min-height: 22px;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .empty {
+      text-align: center;
+      color: #687a6c;
+      padding: 18px;
+    }
+
+    .comment {
+      max-width: 900px;
+      margin: 12px auto;
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #dce5db;
+      overflow-wrap: anywhere;
+    }
+
+    .comment p {
+      white-space: pre-wrap;
+    }
+
+    footer {
+      background: var(--green);
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    /* Responsive Layout */
+
+    @media (max-width: 800px) {
+      .photos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .photos {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 65px 20px;
+      }
+
+      .mission-box {
+        padding: 24px 18px;
+      }
+
+      nav {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Header and Navigation -->
+
+<header>
+  <div class="brand">Salem Tenants United</div>
+
+  <nav aria-label="Main navigation">
+    <a href="#about" onclick="goToSection('about'); return false;">About</a>
+    <a href="#updates" onclick="goToSection('updates'); return false;">Updates</a>
+    <a href="#notices" onclick="goToSection('notices'); return false;">Notices</a>
+    <a href="#events" onclick="goToSection('events'); return false;">Events</a>
+    <a href="#photos" onclick="goToSection('photos'); return false;">Photos</a>
+    <a href="#comments" onclick="goToSection('comments'); return false;">Comments</a>
+    <a href="#connected" onclick="goToSection('connected'); return false;">Stay Connected</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Homepage -->
+
+  <div class="hero">
+    <h1>Salem Tenants United Essex County</h1>
+
+    <p>
+      Building a stronger community through communication,
+      connection, and shared voices.
+    </p>
+
+    <a class="btn" href="#updates"
+       onclick="goToSection('updates'); return false;">
+      Explore Community Updates
+    </a>
+  </div>
+
+  <!-- About and Mission -->
+
+  <section id="about">
+    <h2>Our Community, Our Voice</h2>
+
+    <p class="intro">
+      Salem Tenants United Essex County is a space for
+      residents to stay informed, share ideas, discover
+      community activities, and connect with one another.
+    </p>
+
+    <div class="mission-box">
+      <h3>Our Mission</h3>
+
+      <p>
+        To educate, inform, empower, and advocate for
+        fair laws and regulations that support clean,
+        safe, and secure housing and shelter.
+      </p>
+
+      <p>
+        Through written, verbal, and visual communication,
+        we strive to connect with our members and interested
+        community members, share important information,
+        and deliver messages that promote awareness,
+        understanding, and positive change.
+      </p>
+    </div>
+  </section>
+
+  <!-- Community Updates -->
+
+  <section id="updates">
+    <h2>Community Updates</h2>
+
+    <p class="intro">
+      News and information from our community.
+    </p>
+
+    <div id="updatesList" class="cards">
+      <p class="empty">Loading updates...</p>
+    </div>
+  </section>
+
+  <!-- Notices -->
+
+  <section id="notices">
+    <h2>Notices</h2>
+
+    <p class="intro">
+      Important announcements for residents.
+    </p>
+
+    <div id="noticesList" class="cards">
+      <p class="empty">Loading notices...</p>
+    </div>
+  </section>
+
+  <!-- Events -->
+
+  <section id="events">
+    <h2>Community Events</h2>
+
+    <p class="intro">
+      Stay connected through meetings, activities,
+      and special events.
+    </p>
+
+    <div id="eventsList" class="cards">
+      <p class="empty">Loading events...</p>
+    </div>
+  </section>
+
+  <!-- Community Photos -->
+
+  <section id="photos">
+    <h2>Community Photos</h2>
+
+    <p class="intro">
+      Moments shared by our community.
+    </p>
+
+    <div id="photosList" class="photos">
+      <p class="empty">Loading photos...</p>
+    </div>
+  </section>
+
+  <!-- Comments -->
+
+  <section id="comments">
+    <h2>Community Comments</h2>
+
+    <p class="intro">
+      Share your thoughts. Comments are reviewed
+      before appearing publicly.
+    </p>
+
+    <div id="commentsList"></div>
+
+    <form id="commentForm">
+      <label for="commentName">Your name</label>
+
+      <input id="commentName"
+             maxlength="80"
+             required>
+
+      <label for="commentText">Your comment</label>
+
+      <textarea id="commentText"
+                maxlength="1200"
+                required></textarea>
+
+      <button type="submit">Submit Comment</button>
+
+      <div id="commentStatus"
+           class="status"
+           role="status"></div>
+    </form>
+  </section>
+
+  <!-- Stay Connected -->
+
+  <section id="connected">
+    <h2>Stay Connected</h2>
+
+    <p class="intro">
+      Leave your email address to receive community information.
+      Your email address will not be displayed publicly.
+    </p>
+
+    <form id="emailForm">
+      <label for="emailAddress">Email address</label>
+
+      <input id="emailAddress"
+             type="email"
+             maxlength="180"
+             required
+             placeholder="you@example.com">
+
+      <button type="submit">Subscribe</button>
+
+      <div id="emailStatus"
+           class="status"
+           role="status"></div>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  Salem Tenants United Essex County -
+  Building community together
+</footer>
+
+<script>
+
+/* Navigation - Works within Google Apps Script */
+
+function goToSection(sectionId) {
+  const section = document.getElementById(sectionId);
+
+  if (section) {
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
+
+const $ = id => document.getElementById(id);
+
+/* Utility Functions */
+
+function empty(id, message) {
+  const container = $(id);
+  container.replaceChildren();
+
+  const p = document.createElement("p");
+  p.className = "empty";
+  p.textContent = message;
+
+  container.append(p);
+}
+
+function element(tag, text, className) {
+  const el = document.createElement(tag);
+
+  if (text !== undefined && text !== null) {
+    el.textContent = String(text);
+  }
+
+  if (className) {
+    el.className = className;
+  }
+
+  return el;
+}
+
+/* Google Drive Image Support */
+
+function safeImage(url) {
+  try {
+    let value = String(url || "").trim();
+
+    const driveMatch = value.match(
+      /drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/
+    );
+
+    if (driveMatch) {
+      value = "https://drive.google.com/thumbnail?id=" +
+        driveMatch[1] + "&sz=w1200";
+    }
+
+    const u = new URL(value);
+
+    return u.protocol === "https:" ? u.href : null;
+
+  } catch (e) {
+    return null;
+  }
+}
+
+function image(url, alt) {
+  const src = safeImage(url);
+
+  if (!src) {
+    return null;
+  }
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = alt || "Community photo";
+  img.loading = "lazy";
+  img.referrerPolicy = "no-referrer";
+
+  return img;
+}
+
+/* Render Updates, Notices and Events */
+
+function renderCards(items, id, tag) {
+  const container = $(id);
+  container.replaceChildren();
+
+  if (!items.length) {
+    empty(id, "Nothing posted yet.");
+    return;
+  }
+
+  items.forEach(item => {
+    const card = element("article", null, "card");
+
+    card.append(
+      element("span", tag, "tag"),
+      element("h3", item.Title || "Community information")
+    );
+
+    if (item.Date) {
+      card.append(
+        element("p", item.Date, "date")
+      );
+    }
+
+    if (item.Details) {
+      const p = element("p", item.Details);
+      p.style.whiteSpace = "pre-wrap";
+      card.append(p);
+    }
+
+    if (item["Image URL"]) {
+      const img = image(item["Image URL"], item.Title);
+
+      if (img) {
+        card.append(img);
+      }
+    }
+
+    const signupOpen = ["yes", "true", "1"].includes(
+      String(item["Signup Open"] || "")
+        .trim()
+        .toLowerCase()
+    );
+
+    if (tag === "EVENT" && signupOpen) {
+      const form = element("form");
+      form.style.padding = "12px";
+
+      const name = element("input");
+      name.placeholder = "Your name";
+      name.required = true;
+      name.maxLength = 80;
+
+      const email = element("input");
+      email.type = "email";
+      email.placeholder = "Email address";
+      email.required = true;
+      email.maxLength = 180;
+
+      const btn = element("button", "Sign up");
+      btn.type = "submit";
+
+      const status = element("p", null, "status");
+      status.setAttribute("role", "status");
+
+      form.append(name, email, btn, status);
+
+      form.addEventListener("submit", ev => {
+        ev.preventDefault();
+
+        btn.disabled = true;
+        status.textContent = "Submitting...";
+
+        google.script.run
+          .withSuccessHandler(msg => {
+            status.textContent = msg;
+            form.reset();
+            btn.disabled = false;
+          })
+          .withFailureHandler(err => {
+            status.textContent = err.message;
+            btn.disabled = false;
+          })
+          .eventSignup({
+            eventId: item.ID,
+            name: name.value,
+            email: email.value
+          });
+      });
+
+      card.append(form);
+    }
+
+    container.append(card);
+  });
+}
+
+/* Six Square Community Photo Gallery */
+
+function renderPhotos(items) {
+  const container = $("photosList");
+  container.replaceChildren();
+
+  const photos = (items || [])
+    .filter(item => safeImage(item["Image URL"]))
+    .slice(0, 6);
+
+  for (let i = 0; i < 6; i++) {
+    const fig = element("figure", null, "photo");
+
+    if (i < photos.length) {
+      const item = photos[i];
+
+      const img = image(
+        item["Image URL"],
+        item.Caption
+      );
+
+      if (img) {
+        img.onerror = function() {
+          const placeholder = element(
+            "div",
+            "Photo unavailable",
+            "photo-placeholder"
+          );
+
+          img.replaceWith(placeholder);
+        };
+
+        fig.append(img);
+      }
+
+      fig.append(
+        element(
+          "figcaption",
+          item.Caption || "Community photo"
+        )
+      );
+
+    } else {
+      fig.append(
+        element(
+          "div",
+          "Photo coming soon",
+          "photo-placeholder"
+        )
+      );
+
+      fig.append(
+        element(
+          "figcaption",
+          "Community Photo " + (i + 1)
+        )
+      );
+    }
+
+    container.append(fig);
+  }
+}
+
+/* Community Comments */
+
+function renderComments(items) {
+  const container = $("commentsList");
+  container.replaceChildren();
+
+  if (!items.length) {
+    empty(
+      "commentsList",
+      "No approved comments yet."
+    );
+    return;
+  }
+
+  items.forEach(item => {
+    const box = element("div", null, "comment");
+
+    box.append(
+      element(
+        "strong",
+        item.Name || "Community member"
+      ),
+      element(
+        "p",
+        item.Comment || ""
+      )
+    );
+
+    container.append(box);
+  });
+}
+
+/* Load Data from Google Sheets */
+
+function load() {
+  if (!(window.google &&
+        google.script &&
+        google.script.run)) {
+
+    [
+      "updatesList",
+      "noticesList",
+      "eventsList",
+      "commentsList"
+    ].forEach(id => {
+      empty(
+        id,
+        "Open the published website to load content."
+      );
+    });
+
+    renderPhotos([]);
+    return;
+  }
+
+  google.script.run
+    .withSuccessHandler(data => {
+      renderCards(
+        data.updates || [],
+        "updatesList",
+        "COMMUNITY"
+      );
+
+      renderCards(
+        data.notices || [],
+        "noticesList",
+        "NOTICE"
+      );
+
+      renderCards(
+        data.events || [],
+        "eventsList",
+        "EVENT"
+      );
+
+      renderPhotos(data.photos || []);
+
+      renderComments(data.comments || []);
+    })
+    .withFailureHandler(err => {
+      const message =
+        "Unable to load community information: " +
+        err.message;
+
+      [
+        "updatesList",
+        "noticesList",
+        "eventsList",
+        "commentsList"
+      ].forEach(id => empty(id, message));
+
+      renderPhotos([]);
+    })
+    .getPublicData();
+}
+
+/* Submit Community Comment */
+
+$("commentForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const button = form.querySelector("button");
+
+  button.disabled = true;
+
+  $("commentStatus").textContent = "Sending...";
+
+  google.script.run
+    .withSuccessHandler(msg => {
+      $("commentStatus").textContent = msg;
+      form.reset();
+      button.disabled = false;
+    })
+    .withFailureHandler(err => {
+      $("commentStatus").textContent = err.message;
+      button.disabled = false;
+    })
+    .submitComment({
+      name: $("commentName").value,
+      comment: $("commentText").value
+    });
+});
+
+/* Email Subscription */
+
+$("emailForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const button = form.querySelector("button");
+
+  button.disabled = true;
+
+  $("emailStatus").textContent = "Sending...";
+
+  google.script.run
+    .withSuccessHandler(msg => {
+      $("emailStatus").textContent = msg;
+      form.reset();
+      button.disabled = false;
+    })
+    .withFailureHandler(err => {
+      $("emailStatus").textContent = err.message;
+      button.disabled = false;
+    })
+    .subscribe({
+      email: $("emailAddress").value
+    });
+});
+
+/* Start Website */
+
+load();
+
+</script>
+
+</body>
+</html>
